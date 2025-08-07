@@ -18,7 +18,8 @@
 ### 🖥️ For End Users
 
 1. **Download the packaged release** (Client + Backend).
-2. **Download LogMeIn Hamachi** from the official site, https://vpn.net/. > If the site is currently not responding or unavailable, you can use this 3rd Party download from Softpedia. https://www.softpedia.com/get/Internet/File-Sharing/Hamachi.shtml
+2. **Download LogMeIn Hamachi** from the official site, https://vpn.net/.
+> If the site is currently not responding or unavailable, you can use this 3rd Party download from Softpedia. https://www.softpedia.com/get/Internet/File-Sharing/Hamachi.shtml
 3. **Run `Netalk.exe`** to open the chat client.
 4.  **Run `run-netalk-server.bat`** to run the backend.
 5. Set up a connection using a shared IP (e.g. via **LogMeIn Hamachi**).
@@ -53,5 +54,6 @@ Coming soon...
 
 ## 🤝 Contributing
 Pull requests are welcome! If you’d like to suggest improvements or fixes, feel free to fork the project and submit a PR.
+
 
 
