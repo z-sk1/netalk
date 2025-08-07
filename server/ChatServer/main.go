@@ -10,6 +10,8 @@ import (
 var clients = make(map[net.Conn]string)
 
 func main() {
+	setupTray()
+
 	listener, err := net.Listen("tcp", ":12345")
 	if err != nil {
 		panic(err)
