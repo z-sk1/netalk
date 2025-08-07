@@ -55,5 +55,6 @@ Coming soon...
 ## 🤝 Contributing
 Pull requests are welcome! If you’d like to suggest improvements or fixes, feel free to fork the project and submit a PR.
 
-⚖️ License
+## ⚖️ License
 This project is licensed under the MIT License.
+
