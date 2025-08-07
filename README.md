@@ -18,12 +18,13 @@
 ### 🖥️ For End Users
 
 1. **Download the packaged release** (Client + Backend).
-2. **Run `Netalk.exe`** to open the chat client.
-3.  **Run `run-netalk-server.bat`** to run the backend.
-4. Set up a connection using a shared IP (e.g. via **LogMeIn Hamachi**).
-5. Copy the IPV4 address (Its usually at the top of Hamachi, with a string of numbers like 25.2.11.2)
-6. Paste the address into the IP Address text box into the top right of the client and click **Connect**.
-7. Start chatting!
+2. **Download LogMeIn Hamachi** from the official site, https://vpn.net/. > If the site is currently not responding or unavailable, you can use this 3rd Party download from Softpedia. https://www.softpedia.com/get/Internet/File-Sharing/Hamachi.shtml
+3. **Run `Netalk.exe`** to open the chat client.
+4.  **Run `run-netalk-server.bat`** to run the backend.
+5. Set up a connection using a shared IP (e.g. via **LogMeIn Hamachi**).
+6. Copy the IPV4 address (Its usually at the top of Hamachi, with a string of numbers like 25.2.11.2)
+7. Paste the address into the IP Address text box into the top right of the client and click **Connect**.
+8. Start chatting!
 
 > Make sure everyone is connected to the same Hamachi network or LAN and has inputted the same **IP Address** into the text box.
 
@@ -52,4 +53,5 @@ Coming soon...
 
 ## 🤝 Contributing
 Pull requests are welcome! If you’d like to suggest improvements or fixes, feel free to fork the project and submit a PR.
+
 
