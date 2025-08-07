@@ -40,15 +40,16 @@ cd server/ChatServer
 go run main.go
 Open ChatClient.sln in Visual Studio and build the solution.
 
-🕸️ Connectivity
+## 🕸️ Connectivity
 Netalk uses LAN IPs for connections. For remote setups:
 
 Use LogMeIn Hamachi (recommended)
 
 Or port forward your backend and share your IP
 
-📸 Setup Instructions with Screenshots
+## 📸 Setup Instructions with Screenshots
 Coming soon...
 
-🤝 Contributing
+## 🤝 Contributing
 Pull requests are welcome! If you’d like to suggest improvements or fixes, feel free to fork the project and submit a PR.
+
