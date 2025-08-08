@@ -14,17 +14,34 @@ func setupTray() {
 	systray.Run(onReady, onExit)
 }
 
+var consoleVisible = false
+
 func onReady() {
 	systray.SetIcon(iconData)
 	systray.SetTitle("Netalk")
 	systray.SetTooltip("Netalk - Chat Server Running")
 
-	// add a menu item to quit the sever
+	// add a menu items
 	mQuit := systray.AddMenuItem("Quit", "Stop the server and exit")
+	mToggleConsole := systray.AddMenuItem("Show Console Window", "Show or hide the console window")
 
 	go func() {
-		<-mQuit.ClickedCh
-		systray.Quit()
+		for {
+			select {
+			case <-mToggleConsole.ClickedCh:
+				consoleVisible = !consoleVisible
+				showConsole(consoleVisible)
+
+				if consoleVisible {
+					mToggleConsole.SetTitle("Show Console Window")
+				} else {
+					mToggleConsole.SetTitle("Hide Console Window")
+				}
+			case <-mQuit.ClickedCh:
+				systray.Quit()
+				return
+			}
+		}
 	}()
 }
 
