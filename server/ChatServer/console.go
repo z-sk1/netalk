@@ -9,6 +9,8 @@ var (
 	user32           = syscall.NewLazyDLL("user32.dll")
 	getConsoleWindow = kernel32.NewProc("GetConsoleWindow")
 	showWindow       = user32.NewProc("ShowWindow")
+	allocConsole     = kernel32.NewProc("AllocConsole")
+	freeConsole      = kernel32.NewProc("FreeConsole")
 )
 
 const (
@@ -24,13 +26,23 @@ func getConsoleWindowHandle() uintptr {
 func showConsole(show bool) {
 	hwnd := getConsoleWindowHandle()
 
-	if hwnd == 0 {
-		return
-	}
-
 	if show {
-		showWindow.Call(SW_SHOW)
+		if hwnd == 0 {
+			// no console yet. create!
+			allocConsole.Call()
+			attachConsoleStdio()
+			// get the new console handle after allocating
+			hwnd = getConsoleWindowHandle()
+			// now show it immediately
+			showWindow.Call(hwnd, SW_SHOW)
+		} else {
+			// console exist. yay, just show it.
+			showWindow.Call(hwnd, SW_SHOW)
+		}
 	} else {
-		showWindow.Call(SW_HIDE)
+		if hwnd != 0 {
+			// console exists. hide!
+			showWindow.Call(hwnd, SW_HIDE)
+		}
 	}
 }

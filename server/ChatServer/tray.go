@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "embed"
-	"log"
+	"os"
 
 	"github.com/getlantern/systray"
 )
@@ -33,12 +33,13 @@ func onReady() {
 				showConsole(consoleVisible)
 
 				if consoleVisible {
-					mToggleConsole.SetTitle("Show Console Window")
-				} else {
 					mToggleConsole.SetTitle("Hide Console Window")
+				} else {
+					mToggleConsole.SetTitle("Show Console Window")
 				}
 			case <-mQuit.ClickedCh:
 				systray.Quit()
+				os.Exit(0)
 				return
 			}
 		}
@@ -46,5 +47,5 @@ func onReady() {
 }
 
 func onExit() {
-	log.Println("Tray icon exited.")
+	freeConsole.Call()
 }
