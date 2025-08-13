@@ -63,11 +63,12 @@ Open ChatClient.sln in Visual Studio and build the solution.
 
 ---
 # 🌐 Connectivity Options
-LAN: Connect directly via local IPv4
+### LAN: Connect directly via local IPv4
 
-Hamachi: Recommended for easy virtual LAN setup
+### Hamachi: Recommended for easy virtual LAN setup
 
-ZeroTier: Alternative VPN for cross-network connections
+### ZeroTier: Alternative VPN for cross-network connections
+
 ---
 # 📸 Setup Instructions with Screenshots
 Coming soon...
@@ -79,6 +80,7 @@ Pull requests are welcome! Suggest improvements or fixes by forking the project 
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
 
