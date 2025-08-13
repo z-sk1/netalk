@@ -60,6 +60,7 @@ cd server/ChatServer
 go run main.go
 ```
 Open ChatClient.sln in Visual Studio and build the solution.
+
 ---
 # 🌐 Connectivity Options
 LAN: Connect directly via local IPv4
@@ -70,11 +71,14 @@ ZeroTier: Alternative VPN for cross-network connections
 ---
 # 📸 Setup Instructions with Screenshots
 Coming soon...
+
 ---
 # 🤝 Contributing
 Pull requests are welcome! Suggest improvements or fixes by forking the project and submitting a PR.
+
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
