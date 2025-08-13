@@ -1,61 +1,78 @@
 # 🗨️ Netalk – P2P LAN Chat Service
 
-**Netalk** is a lightweight chat service designed for local network communication between Windows devices. It's powered by a Go-based backend and a modern .NET Windows Forms frontend.
+**Netalk** is a lightweight chat service designed for local network communication between Windows devices. It uses a Go-based backend and a modern .NET Windows Forms frontend.
 
 ---
 
 ## 📦 Features
 
-- Local peer-to-peer chat with minimal setup
-- Simple, clean Windows desktop client
-- Self-hosted backend with a single `go run` or `.exe` file
-- Designed for small teams, LAN parties, or offline communication
+- Local peer-to-peer chat with minimal setup  
+- Simple, clean Windows desktop client  
+- Self-hosted backend (`go run` or `.exe`)  
+- Perfect for small teams, LAN parties, or offline communication  
 
 ---
 
 ## 🚀 Getting Started
 
-### 🖥️ For End Users
+### 🖥️ End Users
 
-1. **Download the packaged release** (Client + Backend).
-2. **Download LogMeIn Hamachi** from the official site, https://vpn.net/.
-> If the site is currently not responding or unavailable, you can use this 3rd Party download from Softpedia. https://www.softpedia.com/get/Internet/File-Sharing/Hamachi.shtml
-3. **Run `NetalkClient.exe`** to open the chat client.
-4.  Make sure one of the members of the chat hosts the server by running **`netalk-server.exe`**. Remember **ONLY ONE** person should be hosting the server in a group.
-5. Set up a connection using a shared IP (e.g. via **LogMeIn Hamachi**).
-6. Copy the IPV4 address (Its usually at the top of Hamachi, with a string of numbers like 25.2.11.2)
-7. Paste the address into the IP Address text box into the top right of the client and click **Connect**.
-8. Start chatting!
+1. **Download the packaged release** (Client + Backend).  
+2. **Install a VPN if needed**:  
+   - [LogMeIn Hamachi](https://vpn.net/) (official) T
+  
+     This is for those who need only PC support and are looking for an easy setup. The free tier of **Hamachi** is limited and supports only 5 devices per network at a time.
+   - **OR** [ZeroTier](https://www.zerotier.com/) as an alternative
+  
+     This is for those who need PC/Mobile connectivity and dont mind a slightly more difficult setup to gain more functionality and support.
 
-> Make sure everyone is connected to the same Hamachi network or LAN and has inputted the same **IP Address** into the text box.
+3. **Run the client**:  
+NetalkClient.exe
+
+4. **Host the server** (only **one person** per chat group):  
+ - **`netalk-server.exe`**
+ - Locate your **IPv4 IP Address** via ZeroTier or Hamachi.
+ - Share the IP with your peers.
+
+6. **Connect via IP**:  
+- Copy the host’s IPv4 from Hamachi or ZeroTier  
+- Paste it into the **IP Address** textbox in the top-right of the client  
+- Click **Connect**  
+
+> ⚠️ Only one person should host `netalk-server.exe` at a time.  
+> Make sure all users are on the same Hamachi or ZeroTier network.
+> Only people with PCs can host.
+
+6. Start chatting!
 
 ---
 
 ### 🛠️ For Developers
 
-1. Install **Go** from [https://go.dev](https://go.dev)
-2. Clone this repo:
-   ```bash
-   git clone https://github.com/your-username/netalk.git
+1. Install **Go** from [https://go.dev](https://go.dev)  
+2. Clone the repository:
+```
+git clone https://github.com//netalk.git
+```
 Run the backend:
+```
 cd server/ChatServer
 go run main.go
+```
 Open ChatClient.sln in Visual Studio and build the solution.
 
-## 🕸️ Connectivity
-Netalk uses LAN IPs for connections. For remote setups:
+🌐 Connectivity Options
+LAN: Connect directly via local IPv4
 
-Use LogMeIn Hamachi (recommended)
+Hamachi: Recommended for easy virtual LAN setup
 
-Or port forward your backend and share your IP
+ZeroTier: Alternative VPN for cross-network connections
 
-## 📸 Setup Instructions with Screenshots
+📸 Setup Instructions with Screenshots
 Coming soon...
 
-## 🤝 Contributing
-Pull requests are welcome! If you’d like to suggest improvements or fixes, feel free to fork the project and submit a PR.
+🤝 Contributing
+Pull requests are welcome! Suggest improvements or fixes by forking the project and submitting a PR.
 
-## ⚖️ License
+⚖️ License
 This project is licensed under the MIT License.
-
-
