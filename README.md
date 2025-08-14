@@ -19,7 +19,7 @@
 
 1. **Download the packaged release** (Client + Backend).  
 2. **Install a VPN if needed**:  
-   - [LogMeIn Hamachi](https://vpn.net/)
+   - [LogMeIn Hamachi](https://vpn.net/) if that link doesnt work, [LogMeIn Hamachi Alt](https://www.softpedia.com/get/Internet/File-Sharing/Hamachi.shtml)
   
      This is for those who need only PC support and are looking for an easy setup. The free tier of **Hamachi** is limited and supports only 5 devices per network at a time.
    - **OR** [ZeroTier](https://www.zerotier.com/)
@@ -80,6 +80,7 @@ Pull requests are welcome! Suggest improvements or fixes by forking the project 
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
 
