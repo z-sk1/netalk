@@ -21,7 +21,7 @@ func onReady() {
 	systray.SetTitle("Netalk")
 	systray.SetTooltip("Netalk - Chat Server Running")
 
-	// add a menu items
+	// add menu items
 	mQuit := systray.AddMenuItem("Quit", "Stop the server and exit")
 	mToggleConsole := systray.AddMenuItem("Show Console Window", "Show or hide the console window")
 
