@@ -11,7 +11,6 @@ var clients = make(map[net.Conn]string)
 
 func main() {
 	fmt.Println("Netalk backend starting...")
-	go setupTray()
 
 	listener, err := net.Listen("tcp", ":12345")
 	if err != nil {

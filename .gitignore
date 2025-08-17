@@ -16,11 +16,6 @@ android/
 .expo/
 build/
 
-# macOS unsupported
-server/ChatServer/attach.go/
-server/ChatServer/console.go/
-server/ChatServer/tray.go/
-
 # Visual Studio Code files (optional)
 .vscode/
 
