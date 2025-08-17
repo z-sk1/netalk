@@ -17,9 +17,9 @@ android/
 build/
 
 # macOS unsupported
-attach.go/
-console.go/
-tray.go/
+server/ChatServer/attach.go/
+server/ChatServer/console.go/
+server/ChatServer/tray.go/
 
 # Visual Studio Code files (optional)
 .vscode/
