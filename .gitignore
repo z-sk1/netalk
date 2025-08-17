@@ -16,6 +16,11 @@ android/
 .expo/
 build/
 
+# macOS unsupported
+attach.go/
+console.go/
+tray.go/
+
 # Visual Studio Code files (optional)
 .vscode/
 

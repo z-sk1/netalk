@@ -7,7 +7,7 @@ import (
 	"github.com/getlantern/systray"
 )
 
-//go:embed assets\icon.ico
+//go:embed assets/icon.ico
 var iconData []byte
 
 func setupTray() {
