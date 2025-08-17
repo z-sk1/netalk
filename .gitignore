@@ -10,6 +10,12 @@ packages/
 *.suo
 *.userprefs
 
+# expo and other
+ios/
+android/
+.expo/
+build/
+
 # Visual Studio Code files (optional)
 .vscode/
 

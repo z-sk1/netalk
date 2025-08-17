@@ -37,9 +37,15 @@ export default function ChatTab() {
                 const trimmed = m.trim();
                 if (!trimmed) return;
                 
+                if (trimmed == "Enter your username:") {
+                    let usernameToSend = username.trim() || "Guest";
+                    client.write(usernameToSend, "\n");
+                    return;
+                }
+
                 if (trimmed.startsWith("/list")) {
                     const listContent = trimmed.substring(5).trim();
-                    updateUserList(listContent)
+                    appendMsg(setUserList, listContent)
                 } else {
                     appendMsg(setMessages, trimmed);
                 }
@@ -76,6 +82,7 @@ export default function ChatTab() {
 
         try {
             client.write(msg + "\n");
+            setTxtChat("");
         } catch (err) {
             Alert.alert("Send failed:", err.message);
         }

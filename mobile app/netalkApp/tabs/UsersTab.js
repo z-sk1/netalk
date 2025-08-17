@@ -7,7 +7,8 @@ export default function UsersTab() {
     const { isConnected, client } = useConnection();
     const [usernameInputFocused, setUsernameInputFocused] = useState(false);
     const [changeBtnPressed, setChangeBtnPressed] = useState(false);
-    const [changeBtnTxt, setChangeBtnTxt] = useState("Change")
+    const [changeBtnTxt, setChangeBtnTxt] = useState("Change");
+    const [newUsername, setNewUsername] = useState(username);
 
     const scrollRef = useRef();
 
@@ -20,20 +21,19 @@ export default function UsersTab() {
             setUserList([]); // clear the current list
 
             const listData = "/list\n";
-            client.write(listData); 
+            client.write(listData);
         }
     };
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             refreshList();
-        }, 5000); // every 5 seconds, adjust to match C# timer interval
-
+        }, 1500); // every 5 seconds, adjust to match C# timer interval
         return () => clearInterval(intervalId); // cleanup on unmount
     }, [isConnected]);
 
     function changeUsername() {
-        let user = username.trim();
+        let user = newUsername.trim();
         
         if (!user) {
             Alert.alert("Please enter a username first.")
@@ -44,6 +44,10 @@ export default function UsersTab() {
             Alert.alert("Please connected first in the settings tab!")
             return;
         }
+
+        setUsername(user);
+        const renameCmd = "/rename: " + user;
+        client.write(renameCmd + "\n"); 
 
         setChangeBtnTxt("Changed!")
         setTimeout(() => setChangeBtnTxt("Change"), 1500)
@@ -59,8 +63,8 @@ export default function UsersTab() {
                     placeholder = "Guest, Enter a new username"
                     onFocus = {(() => setUsernameInputFocused(true))}
                     onBlur = {(() => setUsernameInputFocused(false))}
-                    value = {username}
-                    onChangeText = {setUsername}
+                    value = {newUsername}
+                    onChangeText = {setNewUsername}
                 />
 
                 <TouchableOpacity
@@ -73,7 +77,7 @@ export default function UsersTab() {
 
                 <ScrollView ref={scrollRef} style={styles.chatBox}>
                     {userList.map((u, i) => (
-                        <Text key={i}>{i} - {u}</Text>
+                        <Text key={i}>{u}</Text>
                     ))}
                 </ScrollView>
             </View>

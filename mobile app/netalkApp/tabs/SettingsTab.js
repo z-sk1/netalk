@@ -55,30 +55,30 @@ export default function SettingsTab() {
         if (btnConnectTxt === "Connect") {
 
             try {
-                const client = TcpSocket.createConnection({ host: serverIP, port: 12345 }, () => {
+                const tcpClient = TcpSocket.createConnection({ host: serverIP, port: 12345 }, () => {
                     console.log('Connected to server at:', serverIP, ". On port :12345.");
-                    setClient(client);
+                    setClient(tcpClient);
 
                     // send username
                     let usernameToSend = username.trim() || "Guest";
-                    client.write(usernameToSend, "\n");
+                    tcpClient.write(usernameToSend + "\n");
 
                     // reqeust user list
-                    client.write("/list\n");
+                    tcpClient.write("/list\n");
 
                     // Listen for data
-                    client.on('data', (data) => {
+                    tcpClient.on('data', (data) => {
                         console.log('Received', data.toString());
                     });
 
                     // Handle error
-                    client.on('error', (err) => {
+                    tcpClient.on('error', (err) => {
                         console.error('Socket error', err);
                         Alert.alert("Connection error", err.message);
                     });
 
                     // Handle close
-                    client.on('close', () => {
+                    tcpClient.on('close', () => {
                         console.log('Connection closed');
                         setBtnConnectTxt("Connect")
                     });
@@ -103,9 +103,7 @@ export default function SettingsTab() {
 
             if (btnConnectTxt === "Disconnect") {
                 listInterval = setInterval(() => {
-                    if (client) {
-                        client.write("/list\n");
-                    }
+                    client?.write("/list\n");
                 }, 5000);
             }
 
