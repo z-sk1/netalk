@@ -115,9 +115,15 @@ func handleConnection(conn net.Conn) {
 
 		if strings.HasPrefix(cleanMsg, "/rename:") {
 			newName := strings.TrimSpace(strings.TrimPrefix(cleanMsg, "/rename:"))
+
+			oldName := clients[conn]
+			clients[conn] = newName
+
 			for c := range clients {
 				if c != conn {
-					c.Write([]byte(fmt.Sprintf("%s is now known as %s.", username, newName)))
+					c.Write([]byte(fmt.Sprintf("%s is now known as %s.", oldName, newName)))
+				} else {
+					c.Write([]byte(fmt.Sprintf("You are now known as %s.", newName)))
 				}
 			}
 			username = newName
