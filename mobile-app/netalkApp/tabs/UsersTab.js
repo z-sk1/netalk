@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { styles } from '../App';
+import { useUser } from '../UserContext';
+import { useConnection } from '../ConnectionContext';
 
 export default function UsersTab() {
     const { userList, setUserList , username, setUsername } = useUser();
@@ -14,7 +16,7 @@ export default function UsersTab() {
 
     useEffect(() => {
         scrollRef.current?.scrollToEnd({ animated: true });
-    }, [messages]);
+    }, [userList]);
 
     const refreshList = () => {
         if (isConnected && client) {
