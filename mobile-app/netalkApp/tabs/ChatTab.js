@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert, Switch } from 'react-native';
 import { styles } from '../App'; 
 import { useConnection } from '../ConnectionContext';
 import { useUser } from '../UserContext';
@@ -85,8 +85,8 @@ export default function ChatTab() {
 
         try {
             if (isPrivate) {
-                whisperCmd = "/whisper"
-                client.write(whisperCmd + receiverName + msg + "\n")
+                const whisperCmd = "/whisper"
+                client.write(whisperCmd + " " + receiverName + " " + msg + "\n")
             } else {
                 client.write(msg + "\n");
             }
@@ -99,7 +99,7 @@ export default function ChatTab() {
     return (
         <View style = {styles.container}>
             <Text style = {styles.h1}>netalk</Text>
-            <Text styles = {styles.h2}>
+            <Text style = {styles.h2}>
                 {isPrivate ? "Private Messages" : "Public Messages"}
             </Text>
 
@@ -108,7 +108,7 @@ export default function ChatTab() {
                     <>
                         <TextInput 
                             style = {[styles.textInput, receiverTxtFocused && styles.textInputFocused]}
-                            placeholder = "Type in your receiver's username..."
+                            placeholder = "Type in your receiver's user..."
                             onFocus = {(() => setReceiverTxtFocused(true))}
                             onBlur = {(() => setReceiverTxtFocused(false))}
                             value = {receiverName}
@@ -136,7 +136,7 @@ export default function ChatTab() {
 
                 <View style = {styles.buttonToggleRow}>
                     <TouchableOpacity
-                        style = {[styles.button, btnSendPressed && styles.buttonPressed]}
+                        style = {[styles.sendbutton, btnSendPressed && styles.buttonPressed]}
                         onPressIn = {(() => setBtnSendPressed(true))}
                         onPressOut = {(() => setBtnSendPressed(false))}
                         onPress = {sendMsg}>

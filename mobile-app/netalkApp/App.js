@@ -59,12 +59,13 @@ export const styles = StyleSheet.create({
 
   h2: {
     fontSize: 35,
-    marginBottom: 20,
+    marginBottom: 0,
     fontWeight: 'bold',
     color: 'rgba(255, 255, 255, 0.47)', // #ffffff78 alpha
     textShadowColor: 'rgba(0, 0, 0, 0.3)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
+    top: -40,
   },
 
   inputGroup: {
@@ -111,6 +112,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',  // add vertical centering
     alignSelf: 'center',
     flexGrow: 0,
+
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+
+  sendbutton: {
+    backgroundColor: '#667eb6ff',
+    minWidth: 140,
+    paddingVertical: 15,
+    paddingHorizontal: 20, // increase horizontal padding
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',  // add vertical centering
+    alignSelf: 'center',
+    flexGrow: 1,
 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
