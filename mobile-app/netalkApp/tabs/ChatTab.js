@@ -8,9 +8,12 @@ export default function ChatTab() {
     const [txtChat, setTxtChat] = useState('');
     const [txtChatFocused, setTxtChatFocused] = useState(false);
     const [btnSendPressed, setBtnSendPressed] = useState(false);
+    const [isPrivate, setIsPrivate] = useState(false);
     const { isConnected, client } = useConnection();
     const [messages, setMessages] = useState([]);
     const { userList, setUserList, username, setUsername } = useUser();
+    const [receiverName, setReceiverName] = useState(null);
+    const [receiverTxtFocused, setReceiverTxtFocused] = useState(false);
 
     const scrollRef = useRef();
 
@@ -81,7 +84,12 @@ export default function ChatTab() {
         }
 
         try {
-            client.write(msg + "\n");
+            if (isPrivate) {
+                whisperCmd = "/whisper"
+                client.write(whisperCmd + receiverName + msg + "\n")
+            } else {
+                client.write(msg + "\n");
+            }
             setTxtChat("");
         } catch (err) {
             Alert.alert("Send failed:", err.message);
@@ -91,24 +99,60 @@ export default function ChatTab() {
     return (
         <View style = {styles.container}>
             <Text style = {styles.h1}>netalk</Text>
+            <Text styles = {styles.h2}>
+                {isPrivate ? "Private Messages" : "Public Messages"}
+            </Text>
 
             <View style = {styles.inputGroup}>
-                <TextInput 
-                    style = {[styles.textInput, txtChatFocused && styles.textInputFocused]}
-                    placeholder = "Type in your message..."
-                    onFocus = {(() => setTxtChatFocused- (true))}
-                    onBlur = {(() => setTxtChatFocused(false))}
-                    value = {txtChat}
-                    onChangeText = {setTxtChat}
-                />
+                {isPrivate ? (
+                    <>
+                        <TextInput 
+                            style = {[styles.textInput, receiverTxtFocused && styles.textInputFocused]}
+                            placeholder = "Type in your receiver's username..."
+                            onFocus = {(() => setReceiverTxtFocused(true))}
+                            onBlur = {(() => setReceiverTxtFocused(false))}
+                            value = {receiverName}
+                            onChangeText = {setReceiverName}
+                        />
+                        <TextInput 
+                            style = {[styles.textInput, txtChatFocused && styles.textInputFocused]}
+                            placeholder = "Type in your private message..."
+                            onFocus = {(() => setTxtChatFocused(true))}
+                            onBlur = {(() => setTxtChatFocused(false))}
+                            value = {txtChat}
+                            onChangeText = {setTxtChat}
+                        />
+                    </>
+                ) : (
+                    <TextInput
+                        style = {[styles.textInput, txtChatFocused && styles.textInputFocused]}
+                        placeholder = "Type in your message..."
+                        onFocus = {(() => setTxtChatFocused(true))}
+                        onBlur = {(() => setTxtChatFocused(false))}
+                        value = {txtChat}
+                        onChangeText = {setTxtChat}
+                    />
+                )}
 
-                <TouchableOpacity
-                    style = {[styles.button, btnSendPressed && styles.buttonPressed]}
-                    onPressIn = {(() => setBtnSendPressed(true))}
-                    onPressOut = {(() => setBtnSendPressed(false))}
-                    onPress = {sendMsg}>
-                    <Text style = {styles.buttonText}>Send</Text>
-                </TouchableOpacity>
+                <View style = {styles.buttonToggleRow}>
+                    <TouchableOpacity
+                        style = {[styles.button, btnSendPressed && styles.buttonPressed]}
+                        onPressIn = {(() => setBtnSendPressed(true))}
+                        onPressOut = {(() => setBtnSendPressed(false))}
+                        onPress = {sendMsg}>
+                        <Text style = {styles.buttonText}>Send</Text>
+                    </TouchableOpacity>
+
+                    <View style = {styles.toggleContainer}>
+                        <Switch
+                            value = {isPrivate}
+                            onValueChange = {(val) => {
+                                setIsPrivate(val);
+                            }}
+                        />
+                        <Text style = {styles.toggleLabel}>Private</Text>
+                    </View>
+                </View>
 
                 <ScrollView ref={scrollRef} style={styles.chatBox}>
                     {messages.map((m, i) => (

@@ -3,6 +3,7 @@ import TcpSocket from 'react-native-tcp-socket';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { styles } from '../App'; 
 import { useConnection } from '../ConnectionContext';
+import { useUser } from '../UserContext';
 
 export default function SettingsTab() {
     const [btnConnectTxt, setBtnConnectTxt] = useState("Connect");
@@ -104,7 +105,7 @@ export default function SettingsTab() {
             if (btnConnectTxt === "Disconnect") {
                 listInterval = setInterval(() => {
                     client?.write("/list\n");
-                }, 5000);
+                }, 1500);
             }
 
             return () => clearInterval(listInterval);
