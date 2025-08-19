@@ -63,9 +63,11 @@ brew install --cask wine-stable
    The installation command is:
 ```
   softwareupdate --install-rosetta --agree-to-license
-
 ```
 5. You're done! You can now just double click the NetalkClient.exe to run the app.
+
+### Android:
+1.
 ---
 
 ## 🛠️ For Developers
@@ -84,6 +86,7 @@ go run main.go
 ```
 Open ChatClient.sln in Visual Studio and build the solution.
 
+### iOS:
 ---
 # 🌐 Connectivity Options
 ### LAN: Connect directly via local IPv4
@@ -103,6 +106,7 @@ Pull requests are welcome! Suggest improvements or fixes by forking the project 
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
 
