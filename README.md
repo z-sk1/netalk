@@ -90,7 +90,18 @@ go run main.go
 Open ChatClient.sln in Visual Studio and build the solution.
 
 ### iOS:
-Since I do not have a paid Apple Developer account,
+Since I do not have a paid Apple Developer account, I am unable to distribute an ipa file with you guys for you to install (ipa is like the apple equivalent of an apk file). But, I am able to use Xcode to test and debug with a simulator. So, in the macOS branch, if you have:
+- A Mac
+- An iOS device
+- An Apple paid developer account
+- Xcode
+
+Then you can:
+1. Download the **Source Code** from the macOS branch.
+2. Navigate to this directory: mobile-app/netalkApp/ios/
+3. Open the **`.xcworkspace`** file in Xcode
+4. Build the archive!
+5. Once you have a working .ipa file, you can send it to me or open an Issue and I will make sure to see it and reach out.
 
 ---
 # 🌐 Connectivity Options
@@ -111,6 +122,7 @@ Pull requests are welcome! Suggest improvements or fixes by forking the project 
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
 
