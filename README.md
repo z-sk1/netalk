@@ -67,7 +67,10 @@ brew install --cask wine-stable
 5. You're done! You can now just double click the NetalkClient.exe to run the app.
 
 ### Android:
-1.
+1. Download the **apk file**.
+2. Head to downloads or the file manager.
+3. Double click on the new apk file.
+4. Enjoy!
 ---
 
 ## 🛠️ For Developers
@@ -87,6 +90,8 @@ go run main.go
 Open ChatClient.sln in Visual Studio and build the solution.
 
 ### iOS:
+Since I do not have a paid Apple Developer account,
+
 ---
 # 🌐 Connectivity Options
 ### LAN: Connect directly via local IPv4
@@ -106,6 +111,7 @@ Pull requests are welcome! Suggest improvements or fixes by forking the project 
 ---
 # ⚖️ License
 This project is licensed under the MIT License.
+
 
 
 
