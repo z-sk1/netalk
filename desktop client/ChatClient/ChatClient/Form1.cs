@@ -260,7 +260,7 @@ namespace ChatClient
 
                 // List refresh timer
                 listRefreshTimer = new System.Windows.Forms.Timer();
-                listRefreshTimer.Interval = 5000;
+                listRefreshTimer.Interval = 1500;
                 listRefreshTimer.Tick += ListRefreshTimer_Tick;
                 listRefreshTimer.Start();
 
