@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>netalk</title>
+        <link rel = "stylesheet" href = "style/style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1 class = "typing colored">netalk</h1>
+
+            <div class = "dropdown">
+                <button class = "dropbtn">
+                    Menu <span class = "arrow">▼</span>
+                </button>
+                <div class = "dropdown-content">
+                    <a href = "#chat" onclick = "showSection('chat')">Chat</a>
+                    <a href = "#settings" onclick = "showSection('settings')">Settings</a>
+                </div>
+            </div>
+
+            <div class = "dropdown">
+                <button class = "dropbtn">
+                    Websites <span class = "arrow">▼</span>
+                </button>   
+                <div class = "dropdown-content">
+                    <a href = "https://z-sk1.github.io">z-sk's corner</a>
+                    <a href = "https://z-sk1.github.io/shrtnd">shrtnd</a>
+                    <a href = "https://z-sk1.github.io/weathery">weathery</a>
+                    <a href = "https://z-sk1.github.io/click-clock">click clock</a>
+                    <a href = "https://z-sk1.github.io/easy-define">easy define</a>
+                </div>
+            </div>
+        </header>
+
+        <section id = "chat">
+            <div class = "input-group">
+                <input type = "text" id = "chatInput" placeholder = "Type your message here...">
+
+                <button onclick>Send</button>
+            </div>
+
+            <div class = "result">
+                <textarea id = "msgsBox" rows = "6" cols = "80" readonly = "true"></textarea>
+            </div>
+        </section>
+
+        <script src = "scripts/onClick.js"></script>
+        <script src = "scripts/typing.js"></script>
+    </body>
+</html>
