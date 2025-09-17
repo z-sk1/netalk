@@ -15,6 +15,7 @@
                 </button>
                 <div class = "dropdown-content">
                     <a href = "#chat" onclick = "showSection('chat')">Chat</a>
+                    <a href = "#users" onclick = "showSection('users')">Users</a>
                     <a href = "#settings" onclick = "showSection('settings')">Settings</a>
                 </div>
             </div>
@@ -33,19 +34,39 @@
             </div>
         </header>
 
-        <section id = "chat">
+        <section id = "chat" class = "container">
             <div class = "input-group">
                 <input type = "text" id = "chatInput" placeholder = "Type your message here...">
 
-                <button onclick>Send</button>
+                <button onclick = "sendMessage()">Send</button>
             </div>
 
             <div class = "result">
-                <textarea id = "msgsBox" rows = "6" cols = "80" readonly = "true"></textarea>
+                <textarea id = "msgsBox" rows = "8" cols = "40" readonly></textarea>
+            </div>
+        </section>
+
+        <section id = "users" class = "container">
+            <div class = "result">
+                <textarea id = "usersBox" rows = "8" cols = "40" readonly></textarea>
+            </div>
+        </section>
+
+        <section id = "settings" class = "container">
+            <div class = "input-group">
+                <input type = "text" id = "ipInput" placeholder = "Type your IP Address..." >
+                <button onclick = "connect(document.getElementById('ipInput').value)">Connect</button>
+            </div>
+
+            <div class = "input-group">
+                <input type = "text" id = "userInput" placeholder = "Username: Guest">
+                <button>Change</button>
             </div>
         </section>
 
         <script src = "scripts/onClick.js"></script>
         <script src = "scripts/typing.js"></script>
+        <script src = "scripts/connect.js"></script>
+        <script src = "scripts/onEvent.js"></script>
     </body>
 </html>

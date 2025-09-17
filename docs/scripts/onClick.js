@@ -9,7 +9,7 @@ function showSection(id) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  showSection("start");
+  showSection("settings");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -50,7 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // close any open dropdown when clicking outside
-  document.addEventListener("click", () => {
+document.addEventListener("click", () => {
     document.querySelectorAll(".dropdown.active").forEach(d => d.classList.remove("active"));
   });
+});
+
+document.getElementById("chatInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    sendMessage()
+  }
+});
+
+document.getElementById("ipInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    connect(document.getElementById("ipInput").value);
+  }
 });
