@@ -16,7 +16,7 @@ function connect(txtIP) {
     }
     if (!isConnected) {
         try {
-            ws = new WebSocket(`ws://${serverIP}:8080/ws`);
+            ws = new WebSocket(`wss://${serverIP}:8080/ws`);
             ws.onopen = () => {
                 console.log("Connected to server:", serverIP);
                 isConnected = true;
