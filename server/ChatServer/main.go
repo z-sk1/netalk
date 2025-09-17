@@ -4,21 +4,41 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"net/http"
 	"strings"
+
+	"github.com/gorilla/websocket"
 )
 
 var clients = make(map[net.Conn]string)
+
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true // allow all browsers
+	},
+}
 
 func main() {
 	fmt.Println("Netalk backend starting...")
 	go setupTray()
 
+	// start tcp server
 	listener, err := net.Listen("tcp", ":12345")
 	if err != nil {
 		panic(err)
 	}
 	defer listener.Close()
 
+	go func() {
+		// start ws-wrapped server
+		http.HandleFunc("/ws", handleWS)
+		fmt.Println("WebSocket listening on :8080/ws")
+		if err := http.ListenAndServe(":8080", nil); err != nil {
+			panic(err)
+		}
+	}()
+
+	// tcp listener accept
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -31,10 +51,44 @@ func main() {
 	}
 }
 
+func handleWS(w http.ResponseWriter, r *http.Request) {
+	wsConn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		fmt.Println("WS upgrade error:", err)
+		return
+	}
+	defer wsConn.Close()
+
+	// connect to TCP server
+	tcpConn, err := net.Dial("tcp", "localhost:12345") // change host if needed
+	if err != nil {
+		wsConn.WriteMessage(websocket.TextMessage, []byte("Failed to connect to TCP server"))
+		return
+	}
+	defer tcpConn.Close()
+
+	// Forward TCP → WS
+	go func() {
+		scanner := bufio.NewScanner(tcpConn)
+		for scanner.Scan() {
+			msg := scanner.Text()
+			wsConn.WriteMessage(websocket.TextMessage, []byte(msg))
+		}
+	}()
+
+	// Forward WS → TCP
+	for {
+		_, msg, err := wsConn.ReadMessage()
+		if err != nil {
+			break
+		}
+		tcpConn.Write(append(msg, '\n')) // add newline for TCP server
+	}
+}
+
 func handleConnection(conn net.Conn) {
 	defer conn.Close()
 
-	conn.Write([]byte("Enter your username:"))
 	reader := bufio.NewReader(conn)
 	username, err := reader.ReadString('\n')
 	if err != nil {
