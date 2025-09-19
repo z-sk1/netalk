@@ -18,6 +18,24 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
+var bannedWords = []string{
+	"nigga",
+	"nigger",
+	"cunt",
+	"fuck",
+	"bitch",
+	"shit",
+	"bastard",
+	"arse",
+	"ass",
+	"retard",
+	"rape",
+	"raping",
+	"sex",
+	"cum",
+	"semen",
+}
+
 func main() {
 	fmt.Println("Netalk backend starting...")
 	go setupTray()
@@ -124,6 +142,12 @@ func handleConnection(conn net.Conn) {
 		}
 
 		cleanMsg := strings.TrimSpace(msg)
+
+		for _, word := range bannedWords {
+			if strings.Contains(cleanMsg, word) {
+				cleanMsg = strings.ReplaceAll(cleanMsg, word, "muck")
+			}
+		}
 
 		if cleanMsg == "/quit" {
 			conn.Write([]byte("Goodbye!\n"))
